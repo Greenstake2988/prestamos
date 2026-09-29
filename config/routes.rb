@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get "inicio/index"
-  resources :prestamos
+  resources :prestamos do
+    member do
+      get :pdf
+    end
+  end
   resources :personas
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

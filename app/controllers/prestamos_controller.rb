@@ -1,5 +1,5 @@
 class PrestamosController < ApplicationController
-  before_action :set_prestamo, only: %i[ show edit update destroy ]
+  before_action :set_prestamo, only: %i[ show edit update destroy pdf ]
 
   # GET /prestamos or /prestamos.json
   def index
@@ -55,6 +55,14 @@ class PrestamosController < ApplicationController
       format.html { redirect_to prestamos_path, notice: "Préstamo eliminado.", status: :see_other }
       format.json { head :no_content }
     end
+  end
+
+  def pdf
+    contenido = CalendarioPdf.new(@prestamo).render
+    send_data contenido,
+              filename: "pagos-#{@prestamo.persona.nombre.parameterize}.pdf",
+              type: "application/pdf",
+              disposition: "inline"
   end
 
   private

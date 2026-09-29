@@ -5,7 +5,7 @@
 <div>
   <%= link_to "Editar este préstamo", edit_prestamo_path(@prestamo) %> |
   <%= link_to "Volver a préstamos", prestamos_path %>
-
+  <%= link_to "Descargar PDF", pdf_prestamo_path(@prestamo), target: "_blank" %>
   <%= button_to "Eliminar este préstamo", @prestamo, method: :delete %>
 </div>
 
