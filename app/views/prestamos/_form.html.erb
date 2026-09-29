@@ -1,8 +1,7 @@
 <%= form_with(model: prestamo) do |form| %>
   <% if prestamo.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(prestamo.errors.count, "error") %> prohibited this prestamo from being saved:</h2>
-
+        <h2><%= prestamo.errors.count == 1 ? "1 error impidió" : "#{prestamo.errors.count} errores impidieron" %> guardar este préstamo:</h2>
       <ul>
         <% prestamo.errors.each do |error| %>
           <li><%= error.full_message %></li>

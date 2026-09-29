@@ -7,3 +7,21 @@ es:
         separator: "."
         delimiter: ","
         precision: 0
+  activerecord:
+    models:
+      persona:
+        one: Persona
+        other: Personas
+      prestamo:
+        one: Préstamo
+        other: Préstamos
+    attributes:
+      persona:
+        nombre: Nombre
+      prestamo:
+        persona: Persona
+        monto_prestado: Monto prestado
+        monto_a_devolver: Monto a devolver
+        monto_pago: Monto de cada pago
+        fecha_primer_pago: Fecha del primer pago
+        frecuencia: Frecuencia

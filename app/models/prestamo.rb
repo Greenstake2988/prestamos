@@ -43,6 +43,9 @@ class Prestamo < ApplicationRecord
     end.sort_by { |p| p[:fecha] }
   end
 
+  def pendiente_estimado(hoy: Date.current)
+      calendario.select { |p| p[:fecha] > hoy }.sum { |p| p[:monto] }
+    end
   private
 
   def fechas_quincenales

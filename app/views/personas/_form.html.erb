@@ -1,8 +1,7 @@
 <%= form_with(model: persona) do |form| %>
   <% if persona.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(persona.errors.count, "error") %> prohibited this persona from being saved:</h2>
-
+        <h2><%= persona.errors.count == 1 ? "1 error impidió" : "#{persona.errors.count} errores impidieron" %> guardar esta persona:</h2>
       <ul>
         <% persona.errors.each do |error| %>
           <li><%= error.full_message %></li>
