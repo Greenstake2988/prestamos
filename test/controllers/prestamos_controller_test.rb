@@ -45,4 +45,15 @@ class PrestamosControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to prestamos_url
   end
+  test "should get pdf" do
+    get pdf_prestamo_url(@prestamo)
+    assert_response :success
+    assert_equal "application/pdf", response.media_type
+  end
+
+  test "should export xlsx" do
+    get exportar_prestamos_url
+    assert_response :success
+    assert_equal "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", response.media_type
+  end
 end

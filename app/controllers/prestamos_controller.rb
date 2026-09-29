@@ -70,19 +70,9 @@ class PrestamosController < ApplicationController
 
 
   def exportar
-    csv = CSV.generate do |fila|
-      fila << ["Persona", "Monto prestado", "Monto a devolver", "Ganancia",
-               "Monto de cada pago", "Número de pagos", "Frecuencia", "Fecha primer pago"]
-
-      Prestamo.includes(:persona).order(:fecha_primer_pago).each do |p|
-        fila << [p.persona.nombre, p.monto_prestado, p.monto_a_devolver, p.ganancia,
-                 p.monto_pago, p.numero_de_pagos, p.frecuencia, p.fecha_primer_pago]
-      end
-    end
-
-    send_data "\uFEFF" + csv,
-              filename: "prestamos-#{Date.current}.csv",
-              type: "text/csv; charset=utf-8"
+    send_data RespaldoXlsx.new.render,
+              filename: "prestamos-#{Date.current}.xlsx",
+              type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
   end
 
   private
