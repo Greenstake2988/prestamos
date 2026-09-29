@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "inicio/index"
   resources :prestamos
   resources :personas
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,6 +14,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-
+  root "inicio#index"
 end
-

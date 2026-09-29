@@ -36,6 +36,13 @@ class Prestamo < ApplicationRecord
     end
   end
 
+  def self.proximos_pagos(desde: Date.current, hasta: 14.days.from_now.to_date)
+    includes(:persona).flat_map do |prestamo|
+      prestamo.calendario.select { |p| p[:fecha].between?(desde, hasta) }
+                         .map { |p| p.merge(persona: prestamo.persona, prestamo: prestamo) }
+    end.sort_by { |p| p[:fecha] }
+  end
+
   private
 
   def fechas_quincenales

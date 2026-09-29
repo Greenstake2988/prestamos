@@ -1,0 +1,33 @@
+<h1>Préstamos</h1>
+
+<div>
+  <p><strong>Prestado:</strong> <%= number_to_currency(@total_prestado) %></p>
+  <p><strong>Por recibir:</strong> <%= number_to_currency(@total_a_devolver) %></p>
+  <p><strong>Ganancia:</strong> <%= number_to_currency(@ganancia) %></p>
+</div>
+
+<h2>Próximos pagos (14 días)</h2>
+
+<% if @proximos_pagos.any? %>
+  <table>
+    <thead>
+      <tr><th>Fecha</th><th>Persona</th><th>Monto</th></tr>
+    </thead>
+    <tbody>
+      <% @proximos_pagos.each do |pago| %>
+        <tr>
+          <td><%= l pago[:fecha], format: :long %></td>
+          <td><%= link_to pago[:persona].nombre, pago[:prestamo] %></td>
+          <td><%= number_to_currency(pago[:monto]) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No hay pagos en los próximos 14 días.</p>
+<% end %>
+
+<p>
+  <%= link_to "Personas", personas_path %> |
+  <%= link_to "Préstamos", prestamos_path %>
+</p>

@@ -1,0 +1,9 @@
+es:
+  number:
+    currency:
+      format:
+        unit: "$"
+        format: "%u%n MXN"
+        separator: "."
+        delimiter: ","
+        precision: 0

@@ -8,3 +8,19 @@
 
   <%= button_to "Destroy this prestamo", @prestamo, method: :delete %>
 </div>
+
+<h2>Calendario de pagos</h2>
+<table>
+  <thead>
+    <tr><th>#</th><th>Fecha</th><th>Monto</th></tr>
+  </thead>
+  <tbody>
+    <% @prestamo.calendario.each do |pago| %>
+      <tr>
+        <td><%= pago[:numero] %></td>
+        <td><%= l pago[:fecha], format: :long %></td>
+        <td><%= number_to_currency(pago[:monto]) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
