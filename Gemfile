@@ -67,7 +67,7 @@ end
 
 gem "rails-i18n", "~> 8.1"
 
-gem "prawn", "~> 2.4"
+gem "prawn", "~> 2.5"
 gem "prawn-table", "~> 0.2.2"
 
 gem "csv", "~> 3.3"
