@@ -1,0 +1,49 @@
+<%= form_with(model: prestamo) do |form| %>
+  <% if prestamo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(prestamo.errors.count, "error") %> prohibited this prestamo from being saved:</h2>
+
+      <ul>
+        <% prestamo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :persona_id, style: "display: block" %>
+    <%= form.collection_select :persona_id, Persona.order(:nombre), :id, :nombre,
+          { prompt: "Selecciona una persona" } %>
+  </div>
+
+  <div>
+    <%= form.label :monto_prestado, style: "display: block" %>
+    <%= form.text_field :monto_prestado %>
+  </div>
+
+  <div>
+    <%= form.label :monto_a_devolver, style: "display: block" %>
+    <%= form.text_field :monto_a_devolver %>
+  </div>
+
+  <div>
+    <%= form.label :monto_pago, style: "display: block" %>
+    <%= form.text_field :monto_pago %>
+  </div>
+
+  <div>
+    <%= form.label :fecha_primer_pago, style: "display: block" %>
+    <%= form.date_field :fecha_primer_pago %>
+  </div>
+
+  <div>
+    <%= form.label :frecuencia, style: "display: block" %>
+    <%= form.select :frecuencia,
+          [["Semanal (cada 7 días)", "semanal"], ["Quincenal (15 y fin de mes)", "quincenal"]] %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

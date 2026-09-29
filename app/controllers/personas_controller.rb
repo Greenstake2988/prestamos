@@ -49,11 +49,14 @@ class PersonasController < ApplicationController
 
   # DELETE /personas/1 or /personas/1.json
   def destroy
-    @persona.destroy!
-
     respond_to do |format|
-      format.html { redirect_to personas_path, notice: "Persona was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
+      if @persona.destroy
+        format.html { redirect_to personas_path, notice: "Persona eliminada.", status: :see_other }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to personas_path, alert: "No se puede eliminar: tiene préstamos.", status: :see_other }
+        format.json { render json: @persona.errors, status: :unprocessable_content }
+      end
     end
   end
 

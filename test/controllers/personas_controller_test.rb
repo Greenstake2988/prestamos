@@ -38,8 +38,17 @@ class PersonasControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to persona_url(@persona)
   end
 
-  test "should destroy persona" do
+  test "should destroy persona without prestamos" do
+    persona = personas(:sin_prestamos)
     assert_difference("Persona.count", -1) do
+      delete persona_url(persona)
+    end
+
+    assert_redirected_to personas_url
+  end
+
+  test "should not destroy persona with prestamos" do
+    assert_no_difference("Persona.count") do
       delete persona_url(@persona)
     end
 

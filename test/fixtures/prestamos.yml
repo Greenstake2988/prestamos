@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  persona: one
+  monto_prestado: 9.99
+  monto_a_devolver: 9.99
+  monto_pago: 9.99
+  fecha_primer_pago: 2026-09-29
+  frecuencia: semanal
+
+two:
+  persona: two
+  monto_prestado: 9.99
+  monto_a_devolver: 9.99
+  monto_pago: 9.99
+  fecha_primer_pago: 2026-09-29
+  frecuencia: semanal

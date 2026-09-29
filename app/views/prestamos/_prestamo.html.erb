@@ -1,0 +1,32 @@
+<div id="<%= dom_id prestamo %>">
+  <div>
+    <strong>Persona:</strong>
+    <%= prestamo.persona_id %>
+  </div>
+
+  <div>
+    <strong>Monto prestado:</strong>
+    <%= prestamo.monto_prestado %>
+  </div>
+
+  <div>
+    <strong>Monto a devolver:</strong>
+    <%= prestamo.monto_a_devolver %>
+  </div>
+
+  <div>
+    <strong>Monto pago:</strong>
+    <%= prestamo.monto_pago %>
+  </div>
+
+  <div>
+    <strong>Fecha primer pago:</strong>
+    <%= prestamo.fecha_primer_pago %>
+  </div>
+
+  <div>
+    <strong>Frecuencia:</strong>
+    <%= prestamo.frecuencia.capitalize %>
+  </div>
+
+</div>
