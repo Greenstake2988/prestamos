@@ -1,3 +1,5 @@
+require "csv"
+
 class PrestamosController < ApplicationController
   before_action :set_prestamo, only: %i[ show edit update destroy pdf ]
 
@@ -63,6 +65,24 @@ class PrestamosController < ApplicationController
               filename: "pagos-#{@prestamo.persona.nombre.parameterize}.pdf",
               type: "application/pdf",
               disposition: "inline"
+  end
+
+
+
+  def exportar
+    csv = CSV.generate do |fila|
+      fila << ["Persona", "Monto prestado", "Monto a devolver", "Ganancia",
+               "Monto de cada pago", "Número de pagos", "Frecuencia", "Fecha primer pago"]
+
+      Prestamo.includes(:persona).order(:fecha_primer_pago).each do |p|
+        fila << [p.persona.nombre, p.monto_prestado, p.monto_a_devolver, p.ganancia,
+                 p.monto_pago, p.numero_de_pagos, p.frecuencia, p.fecha_primer_pago]
+      end
+    end
+
+    send_data "\uFEFF" + csv,
+              filename: "prestamos-#{Date.current}.csv",
+              type: "text/csv; charset=utf-8"
   end
 
   private

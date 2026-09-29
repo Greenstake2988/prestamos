@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     member do
       get :pdf
     end
+    collection do
+        get :exportar
+      end
   end
   resources :personas
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
