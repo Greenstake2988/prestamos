@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
-    <title><%= content_for(:title) || "Ruby Rails" %></title>
+    <title><%= content_for(:title) || "Préstamos" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Ruby Rails">
-    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="barra">
+      <nav>
+        <%= link_to "Préstamos", root_path, class: "marca" %>
+        <%= link_to "Inicio", root_path %>
+        <%= link_to "Personas", personas_path %>
+        <%= link_to "Préstamos", prestamos_path %>
+      </nav>
+    </header>
+
+    <main>
+      <% if notice.present? %><p class="aviso"><%= notice %></p><% end %>
+      <% if alert.present? %><p class="aviso error"><%= alert %></p><% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>

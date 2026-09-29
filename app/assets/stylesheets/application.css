@@ -1,10 +1,107 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+:root {
+  --fondo: #f5f6f8;
+  --tarjeta: #ffffff;
+  --texto: #1f2933;
+  --suave: #6b7280;
+  --borde: #e2e5ea;
+  --acento: #2563eb;
+  --acento-hover: #1d4ed8;
+  --peligro: #dc2626;
+  --ok-fondo: #e7f6ec;
+  --ok-texto: #166534;
+  --err-fondo: #fdecec;
+  --err-texto: #991b1b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #111827;
+    --tarjeta: #1f2937;
+    --texto: #f3f4f6;
+    --suave: #9ca3af;
+    --borde: #374151;
+    --acento: #60a5fa;
+    --acento-hover: #93c5fd;
+    --ok-fondo: #14532d;
+    --ok-texto: #bbf7d0;
+    --err-fondo: #7f1d1d;
+    --err-texto: #fecaca;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+main { max-width: 920px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+h1 { font-size: 1.7rem; margin: 0 0 1rem; }
+h2 { font-size: 1.2rem; margin: 2rem 0 .75rem; }
+
+a { color: var(--acento); text-decoration: none; }
+a:hover { color: var(--acento-hover); text-decoration: underline; }
+
+/* Barra superior */
+.barra { background: var(--tarjeta); border-bottom: 1px solid var(--borde); }
+.barra nav { max-width: 920px; margin: 0 auto; padding: .8rem 1rem; display: flex; gap: 1.25rem; align-items: center; }
+.barra .marca { font-weight: 700; margin-right: auto; color: var(--texto); }
+
+/* Avisos */
+.aviso { background: var(--ok-fondo); color: var(--ok-texto); padding: .7rem 1rem; border-radius: 8px; margin: 0 0 1rem; }
+.aviso.error { background: var(--err-fondo); color: var(--err-texto); }
+
+/* Tarjetas: cada persona / préstamo de las listas */
+div[id^="persona_"], div[id^="prestamo_"] {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: .75rem;
+}
+div[id^="persona_"] > div, div[id^="prestamo_"] > div { margin: .15rem 0; }
+div[id^="persona_"] strong, div[id^="prestamo_"] strong { color: var(--suave); font-weight: 500; }
+
+/* Tablas */
+table { width: 100%; border-collapse: collapse; background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 10px; overflow: hidden; }
+th, td { text-align: left; padding: .6rem .9rem; border-bottom: 1px solid var(--borde); }
+th { font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: var(--suave); background: rgba(127,127,127,.08); }
+tr:last-child td { border-bottom: none; }
+
+/* Formularios */
+form div { margin-bottom: 1rem; }
+label { display: block; font-weight: 600; margin-bottom: .3rem; }
+input[type="text"], input[type="number"], input[type="date"], input[type="email"], input[type="password"], select, textarea {
+  width: 100%; max-width: 420px; padding: .55rem .7rem; font: inherit; color: inherit;
+  background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 8px;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--acento); outline-offset: 1px; }
+
+/* Botones */
+input[type="submit"], button {
+  font: inherit; cursor: pointer; padding: .55rem 1.1rem; border: none; border-radius: 8px;
+  background: var(--acento); color: #fff;
+}
+input[type="submit"]:hover, button:hover { background: var(--acento-hover); }
+form.button_to button { background: transparent; color: var(--peligro); border: 1px solid var(--peligro); }
+form.button_to button:hover { background: var(--peligro); color: #fff; }
+
+/* Errores del formulario (los de scaffold) */
+div[style*="color: red"] { background: var(--err-fondo); color: var(--err-texto) !important; padding: .8rem 1rem; border-radius: 8px; margin-bottom: 1rem; }
+div[style*="color: red"] h2 { margin-top: 0; font-size: 1rem; }
+div[style*="color: red"] ul { margin: .4rem 0 0; }
+
+/* Tablero de inicio */
+.tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .75rem; margin-bottom: 1rem; }
+.tarjeta { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 10px; padding: 1rem 1.25rem; }
+.tarjeta .etiqueta { color: var(--suave); font-size: .85rem; }
+.tarjeta .valor { font-size: 1.5rem; font-weight: 700; }
+.tarjeta.destacada { border-color: var(--acento); }
+
+/* Enlaces de acciones */
+.acciones { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.25rem; }

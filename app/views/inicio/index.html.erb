@@ -1,10 +1,22 @@
-<h1>Préstamos</h1>
+<h1>Inicio</h1>
 
-<div>
-  <p><strong>Prestado:</strong> <%= number_to_currency(@total_prestado) %></p>
-  <p><strong>Por recibir:</strong> <%= number_to_currency(@total_a_devolver) %></p>
-  <p><strong>Ganancia:</strong> <%= number_to_currency(@ganancia) %></p>
-  <p><strong>Falta por cobrar (estimado):</strong> <%= number_to_currency(@pendiente) %></p>
+<div class="tarjetas">
+  <div class="tarjeta">
+    <div class="etiqueta">Prestado</div>
+    <div class="valor"><%= number_to_currency(@total_prestado) %></div>
+  </div>
+  <div class="tarjeta">
+    <div class="etiqueta">Total a devolver</div>
+    <div class="valor"><%= number_to_currency(@total_a_devolver) %></div>
+  </div>
+  <div class="tarjeta">
+    <div class="etiqueta">Ganancia</div>
+    <div class="valor"><%= number_to_currency(@ganancia) %></div>
+  </div>
+  <div class="tarjeta destacada">
+    <div class="etiqueta">Falta por cobrar (estimado)</div>
+    <div class="valor"><%= number_to_currency(@pendiente) %></div>
+  </div>
 </div>
 
 <h2>Próximos pagos (14 días)</h2>
@@ -27,8 +39,3 @@
 <% else %>
   <p>No hay pagos en los próximos 14 días.</p>
 <% end %>
-
-<p>
-  <%= link_to "Personas", personas_path %> |
-  <%= link_to "Préstamos", prestamos_path %>
-</p>
