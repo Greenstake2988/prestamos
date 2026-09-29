@@ -12,7 +12,7 @@ class PrestamosController < ApplicationController
 
   # GET /prestamos/new
   def new
-    @prestamo = Prestamo.new
+    @prestamo = Prestamo.new(persona_id: params[:persona_id])
   end
 
   # GET /prestamos/1/edit

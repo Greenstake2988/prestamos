@@ -8,3 +8,35 @@
 
   <%= button_to "Destroy this persona", @persona, method: :delete %>
 </div>
+
+
+<h2>Préstamos</h2>
+
+<% if @persona.prestamos.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Prestado</th>
+        <th>A devolver</th>
+        <th>Ganancia</th>
+        <th>Frecuencia</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @persona.prestamos.each do |prestamo| %>
+        <tr>
+          <td><%= number_to_currency(prestamo.monto_prestado) %></td>
+          <td><%= number_to_currency(prestamo.monto_a_devolver) %></td>
+          <td><%= number_to_currency(prestamo.ganancia) %></td>
+          <td><%= prestamo.frecuencia.capitalize %></td>
+          <td><%= link_to "Ver calendario", prestamo %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Esta persona no tiene préstamos.</p>
+<% end %>
+
+<%= link_to "Nuevo préstamo", new_prestamo_path(persona_id: @persona.id) %>
