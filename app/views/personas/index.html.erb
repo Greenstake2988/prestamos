@@ -1,15 +1,13 @@
-
 <% content_for :title, "Personas" %>
 
-<h1>Personas</h1>
+<div class="encabezado">
+  <h1>Personas</h1>
+  <%= link_to "Nueva persona", new_persona_path, class: "boton" %>
+</div>
 
 <div id="personas">
   <% @personas.each do |persona| %>
     <%= render persona %>
-    <p>
-      <%= link_to "Ver esta persona", persona %>
-    </p>
+    <p><%= link_to "Ver esta persona", persona %></p>
   <% end %>
 </div>
-
-<%= link_to "Nueva persona", new_persona_path %>

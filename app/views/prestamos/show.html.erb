@@ -1,11 +1,12 @@
 
 <%= render @prestamo %>
 
-<div>
-  <%= link_to "Editar este préstamo", edit_prestamo_path(@prestamo) %> |
+<div class="acciones">
+  <%= link_to "Descargar PDF", pdf_prestamo_path(@prestamo), target: "_blank", class: "boton" %>
+  <%= link_to "Editar", edit_prestamo_path(@prestamo) %>
   <%= link_to "Volver a préstamos", prestamos_path %>
-  <%= link_to "Descargar PDF", pdf_prestamo_path(@prestamo), target: "_blank" %>
-  <%= button_to "Eliminar este préstamo", @prestamo, method: :delete %>
+  <%= button_to "Eliminar", @prestamo, method: :delete,
+        form: { data: { turbo_confirm: "¿Eliminar este préstamo?" } } %>
 </div>
 
 <h2>Calendario de pagos</h2>

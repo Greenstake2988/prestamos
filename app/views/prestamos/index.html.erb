@@ -1,16 +1,16 @@
+<% content_for :title, "Préstamos" %>
 
-<% content_for :title, "Prestamos" %>
-
-<h1>Prestamos</h1>
+<div class="encabezado">
+  <h1>Préstamos</h1>
+  <div class="acciones">
+    <%= link_to "Nuevo préstamo", new_prestamo_path, class: "boton" %>
+    <%= link_to "Exportar a Excel", exportar_prestamos_path %>
+  </div>
+</div>
 
 <div id="prestamos">
   <% @prestamos.each do |prestamo| %>
     <%= render prestamo %>
-    <p>
-      <%= link_to "Ver este préstamo", prestamo %>
-    </p>
+    <p><%= link_to "Ver este préstamo", prestamo %></p>
   <% end %>
 </div>
-
-<%= link_to "Nuevo préstamo", new_prestamo_path %>
-<%= link_to "Exportar a Excel", exportar_prestamos_path %>

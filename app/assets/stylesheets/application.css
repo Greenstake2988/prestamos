@@ -105,3 +105,27 @@ div[style*="color: red"] ul { margin: .4rem 0 0; }
 
 /* Enlaces de acciones */
 .acciones { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.25rem; }
+
+
+a.boton {
+  display: inline-block;
+  padding: .55rem 1.1rem;
+  background: var(--acento);
+  color: #fff;
+  border-radius: 8px;
+}
+a.boton:hover { background: var(--acento-hover); text-decoration: none; }
+
+.acciones { align-items: center; }
+.acciones form { margin: 0; }
+
+
+
+/* Encabezado de las listas: título a la izquierda, botones a la derecha */
+
+.encabezado { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; margin-bottom: 1rem; }
+
+.encabezado h1 { margin: 0; }
+
+.encabezado .acciones { margin-top: 0; }
+
